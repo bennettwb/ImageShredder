@@ -11,6 +11,8 @@ namespace Shredder
         public ObjectId Id { get; set; }
         public GettyImages.Editorial.App.Image.MetaData ImageMetadata { get; set; }
         public string OriginalFileName { get; set; }
-        public DateTime IngestedDate { get; set; }
+        public DateTime IngestDate { get; set; }
+        public string IngestMachine { get; set; }
+        public string IngestPath { get; set; }
     }
 }

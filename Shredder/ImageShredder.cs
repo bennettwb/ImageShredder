@@ -31,43 +31,48 @@ namespace Shredder
             Console.WriteLine("Processing {0}", _fi.Name);
 
             _asset.OriginalFileName = _fi.Name;
-            _asset.IngestedDate = DateTime.UtcNow;
+            _asset.IngestDate = DateTime.UtcNow;
             _asset.Id = ObjectId.GenerateNewId();
-             long currentLength = fi.Length;
+            _asset.IngestMachine = Environment.MachineName;
+            _asset.IngestPath = _fi.Directory.FullName;
+
+            long currentLength = fi.Length;
 
 
-            Task.Factory.StartNew(() => { 
-            FileStream fs;
-
-            try
+           var root = Task.Factory.StartNew(() =>
             {
-               
-                System.Threading.Thread.Sleep(2000);
+                FileStream fs;
 
-                if (currentLength != fi.Length)
+                try
+                {
+
+                    System.Threading.Thread.Sleep(2000);
+
+                    if (currentLength != fi.Length)
+                        return;
+
+                    fs = new System.IO.FileStream(_fi.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.Message);
                     return;
+                }
 
-                fs = new System.IO.FileStream(_fi.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-                return;
-            }
-            _original = new byte[fs.Length];
+                _original = new byte[fs.Length];
 
-            var task = Task<int>.Factory.FromAsync(fs.BeginRead, fs.EndRead, _original, 0, (int) fs.Length, fs);
+                var task = Task<int>.Factory.FromAsync(fs.BeginRead, fs.EndRead, _original, 0, (int)fs.Length, fs);
 
-            task.ContinueWith((after) =>
-                                  {
-                                      ((FileStream) after.AsyncState).Close();
-                                      _fi.MoveTo(string.Format("c:\\backup\\{0}.jpg", _asset.Id.ToString()));
-                                  });
-            task.ContinueWith((after) =>
-                                  {
-                                      var t2 =
-                                          Task<MemoryStream>.Factory.StartNew(() => Resize(600)).ContinueWith(
-                                              (s2) =>
+                task.ContinueWith((after) =>
+                                      {
+                                          ((FileStream)after.AsyncState).Close();
+                                          _fi.MoveTo(string.Format("c:\\backup\\{0}.jpg", _asset.Id.ToString()));
+                                      });
+                task.ContinueWith((after) =>
+                                      {
+                                          var t2 =
+                                              Task<MemoryStream>.Factory.StartNew(() => Resize(600)).ContinueWith(
+                                                  (s2) =>
                                                   {
                                                       if (s2.Result != null)
                                                       {
@@ -75,8 +80,8 @@ namespace Shredder
                                                           /*WriteFile(after.Result, _fi, 600) */
                                                       }
                                                   });
-                                      var t6 = Task<MemoryStream>.Factory.StartNew(() => Resize(200)).ContinueWith(
-                                          s6 =>
+                                          var t6 = Task<MemoryStream>.Factory.StartNew(() => Resize(200)).ContinueWith(
+                                              s6 =>
                                               {
                                                   if (s6.Result != null)
                                                   {
@@ -85,15 +90,16 @@ namespace Shredder
                                                   }
                                                   /* WriteFile(after.Result, _fi, 200) */
                                               });
-                                      var tr = Task.Factory.StartNew(ReadMetadata);
+                                          var tr = Task.Factory.StartNew(ReadMetadata);
 
 
-                                      Task.WaitAll(t2, t6, tr);
+                                          Task.WaitAll(t2, t6, tr);
 
-                                  }).ContinueWith((a) => Save());
-        });
+                                      }).ContinueWith((a) => Save());
+            });
+            
 
-    }
+        }
 
         private void Save()
         {
@@ -112,12 +118,12 @@ namespace Shredder
         }
         private void WriteGridFs(MongoDB.Driver.GridFS.MongoGridFS gfs, int size, byte[] buffer)
         {
-//            var stream = gfs.OpenWrite(string.Format("{0}_{1}.jpg", _asset.Id.ToString(), size));
+            //            var stream = gfs.OpenWrite(string.Format("{0}_{1}.jpg", _asset.Id.ToString(), size));
 
-  //         var t = Task.Factory.FromAsync(stream.BeginWrite, stream.EndWrite, buffer, 0, buffer.Length, stream);
+            //         var t = Task.Factory.FromAsync(stream.BeginWrite, stream.EndWrite, buffer, 0, buffer.Length, stream);
 
             var s = new MemoryStream(buffer);
-            gfs.Upload(s, string.Format("{0}_{1}.jpg", _asset.Id.ToString(), size), new MongoGridFSCreateOptions() { Metadata = new BsonDocument() { {"size" , size} }  });
+            gfs.Upload(s, string.Format("{0}_{1}.jpg", _asset.Id.ToString(), size), new MongoGridFSCreateOptions() { Metadata = new BsonDocument() { { "size", size } } });
 
             //        t.Wait();
         }
@@ -128,7 +134,7 @@ namespace Shredder
             {
                 var bytes = new byte[_original.Length];
 
-                _original.CopyTo(bytes,0);
+                _original.CopyTo(bytes, 0);
                 var ms = new MemoryStream(bytes);
 
                 _asset.ImageMetadata = new GettyImages.Editorial.App.Image.WICMetaDataHandler().GetMetaData(ms);
@@ -164,14 +170,14 @@ namespace Shredder
         {
             try
             {
-             //   var bytes = new byte[_original.Length];
-               // _original.CopyTo(bytes, 0);
-                
+                //   var bytes = new byte[_original.Length];
+                // _original.CopyTo(bytes, 0);
+
                 var ms = new MemoryStream(_original, 0, _original.Length, false, true);
                 Image image;
-             
-                     image = Image.FromStream(ms); // Image.FromStream(ms, false, false);
-              
+
+                image = Image.FromStream(ms); // Image.FromStream(ms, false, false);
+
                 var px = GetDimensions(image.Height, image.Width, size);
 
                 var codec = getEncoderInfo("image/jpeg");
@@ -190,7 +196,7 @@ namespace Shredder
                 Graphics g = Graphics.FromImage(out_image);
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.SmoothingMode = SmoothingMode.HighQuality;
-                
+
                 g.DrawImage(image, new Rectangle(0, 0, px.X, px.Y), new Rectangle(0, 0, image.Width, image.Height),
                             GraphicsUnit.Pixel);
 
@@ -200,7 +206,7 @@ namespace Shredder
 
                 image.Dispose();
                 g.Dispose();
-                    
+
 
                 return outStream;
             }

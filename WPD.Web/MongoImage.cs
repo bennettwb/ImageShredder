@@ -35,7 +35,7 @@ namespace WPD.Web
 
                                     var buf = ms.GetBuffer();
 ;
-                                    return File(buf, "image/jpg");
+                                    return File(buf, "image/jpg").ETagged();
                                 });
         }
     }

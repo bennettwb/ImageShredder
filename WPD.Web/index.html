@@ -24,7 +24,12 @@
 
 
   <!-- CSS: implied media="all" -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link href="css/screen.css" media="screen, projection" rel="Stylesheet" type="text/css" />
+  <link href="css/print.css" media="print" rel="Stylesheet" type="text/css" />
+  <!--[if IE]>
+    <link href="css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <![endif]-->
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <link rel="stylesheet" media="handheld" href="css/handheld.css">  -->
@@ -40,14 +45,17 @@
     <header>
 
     </header>
+   
     <div id="main" role="main">
-
+      <nav id="control">
+      </nav>
       <div id="images" data-bind='template: {name: "imageTemplate", data:currentImages}'></div>
-
+      <section id="detail">
+      </section>
       <script id='imageTemplate' type='text/html'>
         <ul>
           {{each $data}}
-          <li><img src="http://localhost:8080/${ name }" alt="${ id }" /></li>
+          <li><img src="mi/${ name }" alt="${ id }" /></li>
           {{/each}}
         </ul>
       </script>

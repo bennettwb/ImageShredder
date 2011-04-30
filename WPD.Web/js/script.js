@@ -9,14 +9,15 @@ ko.applyBindings(model);
 
 $(document).ready(function () {
 
-$('#images').everyTime(1000, 'controlled', getNew);
+//$('#images').everyTime(1000, 'controlled', getNew);
+    getNew();
 
 });
 
 function getNew() {
   $.ajax({
-    url: 'http://localhost:8080',
-    dataType: 'jsonp',
+    url: 'mi',
+    dataType: 'json',
     success: function(data) {
       model.currentImages(data);
     }

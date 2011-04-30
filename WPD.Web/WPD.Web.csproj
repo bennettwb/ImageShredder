@@ -83,6 +83,9 @@
     <Content Include="js\plugins.js" />
     <Content Include="js\script.js" />
     <Content Include="robots.txt" />
+    <Content Include="stylesheets\ie.css" />
+    <Content Include="stylesheets\print.css" />
+    <Content Include="stylesheets\screen.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -99,7 +102,12 @@
     <Compile Include="Mongo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="config.rb" />
+    <None Include="sass\ie.scss" />
+    <None Include="sass\print.scss" />
+    <None Include="sass\screen.scss" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
