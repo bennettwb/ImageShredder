@@ -1,0 +1,5 @@
+<Modules>
+  <Module PersistentId="d:Miscellaneous Files" ModuleId="Kayak" />
+  <Module PersistentId="12F99E24-A9F2-4F9C-86BC-A300941C84A2" ModuleId="WPD.Web" />
+  <Module PersistentId="Nina, Version=1.0.0.0, Culture=neutral" ModuleId="Nina" />
+</Modules>

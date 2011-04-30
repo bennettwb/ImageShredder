@@ -1,0 +1,6 @@
+D:\DevMisc\AForgeTest\AForgeTest\bin\Debug\AForgeTest.exe.config
+D:\DevMisc\AForgeTest\AForgeTest\bin\Debug\AForgeTest.exe
+D:\DevMisc\AForgeTest\AForgeTest\bin\Debug\AForgeTest.pdb
+D:\DevMisc\AForgeTest\AForgeTest\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\DevMisc\AForgeTest\AForgeTest\obj\x86\Debug\AForgeTest.exe
+D:\DevMisc\AForgeTest\AForgeTest\obj\x86\Debug\AForgeTest.pdb
