@@ -25,3 +25,6 @@ D:\DevMisc\WPD\Shredder\bin\Debug\GettyImages.Editorial.App.dll
 D:\DevMisc\WPD\Shredder\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 D:\DevMisc\WPD\Shredder\bin\Debug\GettyImages.Editorial.App.pdb
 D:\DevMisc\WPD\Shredder\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\Shredder.exe.config
+C:\Users\michael\dev\ImageShredder\Shredder\obj\x86\Debug\Shredder.exe
+C:\Users\michael\dev\ImageShredder\Shredder\obj\x86\Debug\Shredder.pdb
