@@ -19,3 +19,16 @@ D:\DevMisc\Shredder\Shredder\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\DevMisc\WPD\Shredder\bin\Debug\Shredder.exe.config
 D:\DevMisc\WPD\Shredder\obj\x86\Debug\Shredder.exe
 D:\DevMisc\WPD\Shredder\obj\x86\Debug\Shredder.pdb
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\Shredder.exe.config
+C:\Users\michael\dev\ImageShredder\Shredder\obj\x86\Debug\Shredder.exe
+C:\Users\michael\dev\ImageShredder\Shredder\obj\x86\Debug\Shredder.pdb
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\Shredder.exe
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\Shredder.pdb
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\GettyImages.Editorial.App.pdb
+C:\Users\michael\dev\ImageShredder\Shredder\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\MongoDB.Bson.dll
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\MongoDB.Driver.dll
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\MongoDB.Bson.pdb
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\MongoDB.Bson.xml
+C:\Users\michael\dev\ImageShredder\Shredder\bin\Debug\MongoDB.Driver.pdb

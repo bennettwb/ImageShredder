@@ -79,21 +79,8 @@
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
-    <RecentFiles>
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:Mongo.cs" caret="132" fromTop="6" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:Global.asax.cs" caret="690" fromTop="25" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:MongoImage.cs" caret="765" fromTop="25" />
-    </RecentFiles>
-    <RecentEdits>
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:Global.asax.cs" caret="309" fromTop="11" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:Global.asax.cs" caret="380" fromTop="16" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:Mongo.cs" caret="132" fromTop="6" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:MongoImage.cs" caret="139" fromTop="5" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:Global.asax.cs" caret="594" fromTop="20" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:MongoImage.cs" caret="1576" fromTop="37" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:MongoImage.cs" caret="1089" fromTop="33" />
-      <File id="12F99E24-A9F2-4F9C-86BC-A300941C84A2/f:MongoImage.cs" caret="1227" fromTop="37" />
-    </RecentEdits>
+    <RecentFiles />
+    <RecentEdits />
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />

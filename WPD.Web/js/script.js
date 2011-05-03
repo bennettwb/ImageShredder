@@ -15,8 +15,8 @@ $('#images').everyTime(1000, 'controlled', getNew);
 
 function getNew() {
   $.ajax({
-    url: 'http://localhost:8080',
-    dataType: 'jsonp',
+    url: 'mi',
+    dataType: 'json',
     success: function(data) {
       model.currentImages(data);
     }

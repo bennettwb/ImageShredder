@@ -21,6 +21,8 @@ namespace Shredder
 
         static void Main(string[] args)
         {
+            while(true)
+
             while (true)
             {
                 var di = new DirectoryInfo("C:\\drop\\");

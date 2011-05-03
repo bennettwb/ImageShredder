@@ -17,7 +17,7 @@ namespace WPD.Web
 
                             var images = db.GridFS.Find(Query.EQ("metadata.size", 200)).OrderByDescending(t => t.UploadDate).Select(x => new { name = x.Name, id = x.Id.ToString() });
 
-                            return Json(images);
+                            return Json(images).ETagged();
          
                         }); 
 

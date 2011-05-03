@@ -10,3 +10,17 @@ D:\DevMisc\WPD\WPD.Web\bin\NHaml.xml
 D:\DevMisc\WPD\WPD.Web\bin\Nina.pdb
 D:\DevMisc\WPD\WPD.Web\obj\Debug\WPD.Web.dll
 D:\DevMisc\WPD\WPD.Web\obj\Debug\WPD.Web.pdb
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\WPD.Web.dll
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\WPD.Web.pdb
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\Newtonsoft.Json.pdb
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\Newtonsoft.Json.xml
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\NHaml.xml
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\Nina.pdb
+C:\Users\michael\dev\ImageShredder\WPD.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\michael\dev\ImageShredder\WPD.Web\obj\Debug\WPD.Web.dll
+C:\Users\michael\dev\ImageShredder\WPD.Web\obj\Debug\WPD.Web.pdb
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\MongoDB.Bson.dll
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\MongoDB.Driver.dll
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\MongoDB.Bson.pdb
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\MongoDB.Bson.xml
+C:\Users\michael\dev\ImageShredder\WPD.Web\bin\MongoDB.Driver.pdb
