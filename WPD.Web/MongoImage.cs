@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using MongoDB.Driver.Builders;
+using WPD.Shared;
 
 namespace WPD.Web
 {

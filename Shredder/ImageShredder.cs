@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using MongoDB.Bson;
 using MongoDB.Driver.GridFS;
+using WPD.Shared;
 
 namespace Shredder
 {
@@ -116,18 +117,36 @@ namespace Shredder
             WriteGridFs(db.GridFS, 600, _preview);
             WriteGridFs(db.GridFS, 0, _original);
         }
-        private void WriteGridFs(MongoDB.Driver.GridFS.MongoGridFS gfs, int size, byte[] buffer)
+        private void WriteGridFs(MongoGridFS gfs, int size, byte[] buffer)
         {
-            //            var stream = gfs.OpenWrite(string.Format("{0}_{1}.jpg", _asset.Id.ToString(), size));
-
-            //         var t = Task.Factory.FromAsync(stream.BeginWrite, stream.EndWrite, buffer, 0, buffer.Length, stream);
-
             var s = new MemoryStream(buffer);
-            gfs.Upload(s, string.Format("{0}_{1}.jpg", _asset.Id.ToString(), size), new MongoGridFSCreateOptions() { Metadata = new BsonDocument() { { "size", size } } });
+            var opts = new MongoGridFSCreateOptions();
 
-            //        t.Wait();
+            opts.ChunkSize = 2408;
+            opts.Metadata = new BsonDocument() {{"size", size}, {"asset", _asset.OriginalFileName} };
+
+            var upload = gfs.OpenWrite(string.Format("{0}_{1}.jpg", _asset.Id, size), opts);
+
+         //   upload.BeginWrite(buffer, 0, buffer.Length, new AsyncCallback(onComplete), upload);
+
+            Task.Factory.FromAsync(upload.BeginWrite, upload.EndWrite, buffer, 0, buffer.Length, upload)
+                .ContinueWith(t =>
+                                  {
+                                      var fs = (MongoGridFSStream)t.AsyncState;
+
+                                     // fs.EndWrite(result);
+
+                                      fs.Close();
+                                  });
         }
+        private void onComplete(IAsyncResult result)
+        {
+            var fs = (MongoGridFSStream)result.AsyncState;
+        
+            fs.EndWrite(result);
 
+            fs.Close();
+        }
         private void ReadMetadata()
         {
             try
@@ -228,5 +247,7 @@ namespace Shredder
                     return codecs[i];
             return null;
         }
+
+       
     }
 }

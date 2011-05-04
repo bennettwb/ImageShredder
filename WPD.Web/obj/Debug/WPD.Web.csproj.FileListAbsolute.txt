@@ -10,3 +10,11 @@ D:\DevMisc\WPD\WPD.Web\bin\Nina.pdb
 D:\DevMisc\WPD\WPD.Web\obj\Debug\ResolveAssemblyReference.cache
 D:\DevMisc\WPD\WPD.Web\obj\Debug\WPD.Web.dll
 D:\DevMisc\WPD\WPD.Web\obj\Debug\WPD.Web.pdb
+D:\DevMisc\WPD\WPD.Web\bin\WPD.Shared.dll
+D:\DevMisc\WPD\WPD.Web\bin\WPD.Shared.pdb
+D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Bson.dll
+D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Driver.dll
+D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Bson.pdb
+D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Bson.xml
+D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Driver.pdb
+D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Driver.xml
