@@ -1,4 +1,3 @@
-D:\DevMisc\WPD\WPD.Web\obj\Debug\ResolveAssemblyReference.cache
 D:\DevMisc\WPD\WPD.Web\bin\WPD.Web.dll
 D:\DevMisc\WPD\WPD.Web\bin\WPD.Web.pdb
 D:\DevMisc\WPD\WPD.Web\bin\Newtonsoft.Json.dll
@@ -8,5 +7,6 @@ D:\DevMisc\WPD\WPD.Web\bin\Newtonsoft.Json.pdb
 D:\DevMisc\WPD\WPD.Web\bin\Newtonsoft.Json.xml
 D:\DevMisc\WPD\WPD.Web\bin\NHaml.xml
 D:\DevMisc\WPD\WPD.Web\bin\Nina.pdb
+D:\DevMisc\WPD\WPD.Web\obj\Debug\ResolveAssemblyReference.cache
 D:\DevMisc\WPD\WPD.Web\obj\Debug\WPD.Web.dll
 D:\DevMisc\WPD\WPD.Web\obj\Debug\WPD.Web.pdb
