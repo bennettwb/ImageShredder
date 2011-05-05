@@ -18,3 +18,5 @@ D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Bson.pdb
 D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Bson.xml
 D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Driver.pdb
 D:\DevMisc\WPD\WPD.Web\bin\MongoDB.Driver.xml
+D:\DevMisc\WPD\WPD.Web\bin\GettyImages.Editorial.App.dll
+D:\DevMisc\WPD\WPD.Web\bin\Microsoft.Practices.ServiceLocation.dll

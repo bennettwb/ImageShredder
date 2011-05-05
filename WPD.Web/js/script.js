@@ -8,9 +8,8 @@ var model = {
 ko.applyBindings(model);
 
 $(document).ready(function () {
-
-//$('#images').everyTime(1000, 'controlled', getNew);
-    getNew();
+    $('#images').everyTime(1000, 'controlled', getNew);
+ //   getNew();
 
 });
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,11 @@ namespace WPD.Web
                         {
                             var db = Mongo.GetDatabase();
 
-                            var images = db.GridFS.Find(Query.EQ("metadata.size", 200)).OrderByDescending(t => t.UploadDate).Select(x => new { name = x.Name, id = x.Id.ToString() });
+                            //var images = db.GridFS.Find(Query.EQ("metadata.size", 200)).OrderByDescending(t => t.UploadDate).Select(x => new { name = x.Name, id = x.Id.ToString() });
+
+                            var images =
+                                db.GetCollection<AssetPack>("images").FindAll().OrderByDescending(t => t.IngestDate).
+                                Select(x => new { Id = x.Id.ToString(), AssetPack = x });
 
                             return Json(images).ETagged();
          
@@ -31,9 +36,14 @@ namespace WPD.Web
 
                                     var ms = new MemoryStream();
 
-                                    
-                                    db.GridFS.Download(ms, m["id"] + ".jpg");
-
+                                    try
+                                    {
+                                        db.GridFS.Download(ms, m["id"] + ".jpg");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Debug.WriteLine(ex.Message);
+                                    }
                                     var buf = ms.GetBuffer();
 ;
                                     return File(buf, "image/jpg").ETagged();

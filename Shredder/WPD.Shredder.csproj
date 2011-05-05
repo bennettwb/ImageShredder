@@ -53,13 +53,13 @@
     <Reference Include="GettyImages.Editorial.App">
       <HintPath>..\..\..\Dev\DEVELOPMENT\CommonBin\EW_Share\GettyImages.Editorial.App.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Bson, Version=1.1.0.27538, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Bson, Version=1.1.0.18656, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OpenSource\mongo-csharp-driver\Driver\bin\Debug\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\Depends\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.1.0.29711, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Driver, Version=1.1.0.18656, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OpenSource\mongo-csharp-driver\Driver\bin\Debug\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\Depends\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -74,7 +74,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetPack.cs" />
     <Compile Include="ImageShredder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

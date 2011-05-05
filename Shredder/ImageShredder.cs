@@ -47,12 +47,12 @@ namespace Shredder
                 try
                 {
 
-                    System.Threading.Thread.Sleep(2000);
+                    System.Threading.Thread.Sleep(1000);
 
                     if (currentLength != fi.Length)
                         return;
 
-                    fs = new System.IO.FileStream(_fi.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    fs = new FileStream(_fi.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
                 }
                 catch (Exception ex)
                 {
@@ -122,22 +122,21 @@ namespace Shredder
             var s = new MemoryStream(buffer);
             var opts = new MongoGridFSCreateOptions();
 
-            opts.ChunkSize = 2408;
+            //opts.ChunkSize = 2408;
             opts.Metadata = new BsonDocument() {{"size", size}, {"asset", _asset.OriginalFileName} };
 
-            var upload = gfs.OpenWrite(string.Format("{0}_{1}.jpg", _asset.Id, size), opts);
+            gfs.Upload(s, string.Format("{0}_{1}.jpg", _asset.Id, size), opts);
+            // var upload = gfs.OpenWrite(string.Format("{0}_{1}.jpg", _asset.Id, size), opts);
 
-         //   upload.BeginWrite(buffer, 0, buffer.Length, new AsyncCallback(onComplete), upload);
+            // upload.BeginWrite(buffer, 0, buffer.Length, new AsyncCallback(onComplete), upload);
 
-            Task.Factory.FromAsync(upload.BeginWrite, upload.EndWrite, buffer, 0, buffer.Length, upload)
-                .ContinueWith(t =>
-                                  {
-                                      var fs = (MongoGridFSStream)t.AsyncState;
+            //Task.Factory.FromAsync(upload.BeginWrite, upload.EndWrite, buffer, 0, buffer.Length, upload)
+            //    .ContinueWith(t =>
+            //                      {
+            //                          var fs = (MongoGridFSStream)t.AsyncState;
 
-                                     // fs.EndWrite(result);
-
-                                      fs.Close();
-                                  });
+            //                          fs.Close();
+            //                      }).Wait();
         }
         private void onComplete(IAsyncResult result)
         {
