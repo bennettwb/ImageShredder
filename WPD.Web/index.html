@@ -35,19 +35,21 @@
 
 </head>
 
-<body>
+<body class="box-fluid">
 
   <div id="container">
     <header>
-
+      WPD POC
     </header>
    
     <div id="main" role="main">
-      <nav id="control">
-      </nav>
+      <aside id="control">
+        <input type="button" id="enableRefresh" value="Refresh Enabled" />
+      </aside>
       <div id="images" data-bind='template: {name: "imageTemplate", data:currentImages}'></div>
-      <section id="detail">
-      </section>
+      <aside id="detail">
+      detail
+      </aside>
       <script id='imageTemplate' type='text/html'>
         <ul>
           {{each $data}}

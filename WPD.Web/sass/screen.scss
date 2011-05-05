@@ -5,7 +5,48 @@
 
 @import "compass/reset";
 @import "compass";
+@import "layout/box";
+@import "compass/layout/stretching";
+
+.boxed-layout {
+  @include centered-box-container("#container");
+  #container { @include flexbox(vertical); }
+  #main { @include liquid; @include flexbox(horizontal); }
+  aside, #images { @include liquid; }
+}
 
 #images {
-	ul li { display: inline-block; }
+  ul li { display: inline-block; }
 }
+
+body {
+  @extend .boxed-layout;
+  #container { width: 100%; }
+}
+#enableRefresh { 
+  /* @include stretch; 
+*/}
+
+@media screen and (min-width: 800px) {
+  body.box-fluid {
+    #images { @include liquid(2); }
+}
+}
+
+@media screen and (min-width: 1000px) {
+  body.box-fluid {
+    #images { @include liquid(3); }
+}
+}
+
+@media screen and (min-width: 1200px) {
+  body.box-fluid {
+    #images { @include liquid(4); }
+}
+}
+
+footer { min-height:100px; background-color: #990000; }
+aside { min-height:300px; background-color: #009900; width: 250px; }
+#nav { min-height:300px; background-color: #000099; }
+
+
