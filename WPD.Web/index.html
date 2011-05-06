@@ -44,7 +44,7 @@
    
     <div id="main" role="main">
       <aside id="control">
-        <input type="button" id="enableRefresh" value="Refresh Enabled" />
+        <input type="button" id="enableRefresh" data-bind="click: toggleRefresh, value: refreshText" />
       </aside>
       <div id="images" data-bind='template: {name: "imageTemplate", data:currentImages}'></div>
       <aside id="detail">

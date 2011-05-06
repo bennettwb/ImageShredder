@@ -118,21 +118,39 @@ footer, header, hgroup, menu, nav, section {
 /* line 19, ../sass/screen.scss */
 #images ul li {
   display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #999999;
+}
+/* line 27, ../sass/screen.scss */
+#images ul li img {
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-/* line 24, ../sass/screen.scss */
+/* line 35, ../sass/screen.scss */
+#enableRefresh {
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 39, ../sass/screen.scss */
 body #container {
   width: 100%;
 }
 
-/* line 26, ../sass/screen.scss */
+/* line 41, ../sass/screen.scss */
 #enableRefresh {
   /* @include stretch; 
 */
 }
 
 @media screen and (min-width: 800px) {
-  /* line 32, ../sass/screen.scss */
+  /* line 47, ../sass/screen.scss */
   body.box-fluid #images {
     -moz-box-flex: 2;
     -webkit-box-flex: 2;
@@ -140,7 +158,7 @@ body #container {
   }
 }
 @media screen and (min-width: 1000px) {
-  /* line 38, ../sass/screen.scss */
+  /* line 53, ../sass/screen.scss */
   body.box-fluid #images {
     -moz-box-flex: 3;
     -webkit-box-flex: 3;
@@ -148,27 +166,27 @@ body #container {
   }
 }
 @media screen and (min-width: 1200px) {
-  /* line 44, ../sass/screen.scss */
+  /* line 59, ../sass/screen.scss */
   body.box-fluid #images {
     -moz-box-flex: 4;
     -webkit-box-flex: 4;
     box-flex: 4;
   }
 }
-/* line 48, ../sass/screen.scss */
+/* line 63, ../sass/screen.scss */
 footer {
   min-height: 100px;
   background-color: #990000;
 }
 
-/* line 49, ../sass/screen.scss */
+/* line 64, ../sass/screen.scss */
 aside {
   min-height: 300px;
   background-color: #009900;
   width: 250px;
 }
 
-/* line 50, ../sass/screen.scss */
+/* line 65, ../sass/screen.scss */
 #nav {
   min-height: 300px;
   background-color: #000099;

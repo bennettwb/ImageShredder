@@ -16,8 +16,23 @@
 }
 
 #images {
-  ul li { display: inline-block; }
+  ul li { 
+    display: inline-block; 
+    width: 200px; 
+    height: 200px; 
+    margin: 5px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #999999;
+    img {
+      margin: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
 }
+
+#enableRefresh { display: inline-block; width: 100%; }
 
 body {
   @extend .boxed-layout;
