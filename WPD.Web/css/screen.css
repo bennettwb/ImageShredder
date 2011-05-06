@@ -111,7 +111,7 @@ body #container {
 }
 /* line 39, ../sass/screen.scss */
 #main aside, #main #images {
-  min-width: 200px;
+  min-width: 100px;
 }
 /* line 42, ../sass/screen.scss */
 #main #images {

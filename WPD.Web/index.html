@@ -47,17 +47,23 @@
         <input type="button" id="enableRefresh" data-bind="click: toggleRefresh, value: refreshText" />
       </aside>
       <div id="images" data-bind='template: {name: "imageTemplate", data:currentImages}'></div>
-      <aside id="detail">
-      detail
+      <aside id="detail" data-bind='template: {name: "detailTemplate", data:currentItem}'>
+      
       </aside>
       <script id='imageTemplate' type='text/html'>
         <ul>
           {{each $data}}
-          <li><img src="mi/${ Id }_200.jpg" alt="${ id }" /></li>
+          <li><img src="mi/${ Id }_200.jpg" alt="${ id }" data-bind="click: function() { model.setCurrent( AssetPack ) }" /></li>
           {{/each}}
         </ul>
       </script>
-
+      <script id='detailTemplate' type='text/html'>
+        <ul>
+          <li><label>Original FileName:</label><span>${ OriginalFileName }</span></li>
+          <li><label>Ingest Date:</label><span>${ IngestDate }</span></li>
+          <li><label>Ingest Machine:</label><span>${ IngestMachine }</span></li>
+          <li><label>Ingest Path:</label><span>${ IngestPath }</span></li>
+      </script>
     </div>
     <footer>
 

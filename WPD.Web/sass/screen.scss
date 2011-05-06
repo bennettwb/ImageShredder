@@ -37,7 +37,7 @@ body {
   @include box-align(stretch);
   width: 100%;
   aside, #images {
-    min-width: 200px;
+    min-width: 100px;
   }
   #images {
     @include box-flex(4);

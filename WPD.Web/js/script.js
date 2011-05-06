@@ -4,7 +4,12 @@
 var model = {
   currentImages: ko.observableArray([]),
   refreshEnabled: ko.observable('false'),
+  currentItem: ko.observable()
 };
+model.setCurrent= function(data) {
+      this.currentItem(data);
+};
+
 model.toggleRefresh= function() {
     if(this.refreshEnabled() == 'true') {
       this.refreshEnabled('false');
