@@ -5,15 +5,7 @@
 
 @import "compass/reset";
 @import "compass";
-@import "layout/box";
 @import "compass/layout/stretching";
-
-.boxed-layout {
-  @include centered-box-container("#container");
-  #container { @include flexbox(vertical); }
-  #main { @include liquid; @include flexbox(horizontal); }
-  aside, #images { @include liquid; }
-}
 
 #images {
   ul li { 
@@ -35,33 +27,51 @@
 #enableRefresh { display: inline-block; width: 100%; }
 
 body {
-  @extend .boxed-layout;
+  //@extend .boxed-layout;
   #container { width: 100%; }
 }
+
+#main {
+  @include display-box;
+  @include box-orient(horizontal);
+  @include box-align(stretch);
+  width: 100%;
+  aside, #images {
+    min-width: 200px;
+  }
+  #images {
+    @include box-flex(4);
+  }
+  aside {
+    @include box-flex(1);
+  }
+}
+
 #enableRefresh { 
   /* @include stretch; 
 */}
 
 @media screen and (min-width: 800px) {
   body.box-fluid {
-    #images { @include liquid(2); }
-}
+  /*  #images { @include liquid(2); }
+*/}
 }
 
 @media screen and (min-width: 1000px) {
   body.box-fluid {
-    #images { @include liquid(3); }
-}
+    /* #images { @include liquid(3); }
+*/}
 }
 
 @media screen and (min-width: 1200px) {
   body.box-fluid {
-    #images { @include liquid(4); }
+   /* #images { @include liquid(4); }
+  */
 }
 }
 
-footer { min-height:100px; background-color: #990000; }
-aside { min-height:300px; background-color: #009900; width: 250px; }
-#nav { min-height:300px; background-color: #000099; }
+footer { min-height:100px; } 
+aside { min-height:300px; }
+#nav { min-height:300px; } 
 
 
