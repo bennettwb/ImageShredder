@@ -71,30 +71,37 @@ namespace Shredder
                                       });
                 task.ContinueWith((after) =>
                                       {
+                                          var tr = Task.Factory.StartNew(ReadMetadata);
+                                        tr.ContinueWith(a=> Save());
+                                          tr.ContinueWith(a =>
+                                                          WriteGridFs(0, _original));
+                                      });
+                task.ContinueWith((after) =>
+                                      {
                                           var t2 =
-                                              Task<MemoryStream>.Factory.StartNew(() => Resize(600)).ContinueWith(
+                                              Task<MemoryStream>.Factory.StartNew(() => Resize(200)).ContinueWith(
                                                   (s2) =>
                                                   {
                                                       if (s2.Result != null)
                                                       {
-                                                          _preview = s2.Result.GetBuffer();
+                                                          WriteGridFs( 200,  s2.Result.GetBuffer());
                                                           /*WriteFile(after.Result, _fi, 600) */
                                                       }
                                                   });
-                                          var t6 = Task<MemoryStream>.Factory.StartNew(() => Resize(200)).ContinueWith(
+                                          var t6 = Task<MemoryStream>.Factory.StartNew(() => Resize(600)).ContinueWith(
                                               s6 =>
                                               {
                                                   if (s6.Result != null)
                                                   {
-                                                      _thumb =
-                                                          s6.Result.GetBuffer();
+                                                      WriteGridFs(600,  s6.Result.GetBuffer());
                                                   }
                                                   /* WriteFile(after.Result, _fi, 200) */
                                               });
-                                          var tr = Task.Factory.StartNew(ReadMetadata);
 
 
-                                          Task.WaitAll(t2, t6, tr);
+                                          
+                                     
+                                       
 
                                       }).ContinueWith((a) => Save());
             });
@@ -104,21 +111,19 @@ namespace Shredder
 
         private void Save()
         {
-            if (_original == null || _thumb == null || _preview == null)
-                return;
-
+         
             var db = Mongo.GetDatabase();
 
             var coll = db.GetCollection("images");
 
             coll.Insert(_asset);
 
-            WriteGridFs(db.GridFS, 200, _thumb);
-            WriteGridFs(db.GridFS, 600, _preview);
-            WriteGridFs(db.GridFS, 0, _original);
+  
         }
-        private void WriteGridFs(MongoGridFS gfs, int size, byte[] buffer)
+        private void WriteGridFs(int size, byte[] buffer)
         {
+            var db = Mongo.GetDatabase();
+            var gfs = db.GridFS;
             var s = new MemoryStream(buffer);
             var opts = new MongoGridFSCreateOptions();
 
@@ -150,10 +155,8 @@ namespace Shredder
         {
             try
             {
-                var bytes = new byte[_original.Length];
-
-                _original.CopyTo(bytes, 0);
-                var ms = new MemoryStream(bytes);
+   
+                var ms = new MemoryStream(_original, 0, _original.Length, false, true);
 
                 _asset.ImageMetadata = new GettyImages.Editorial.App.Image.WICMetaDataHandler().GetMetaData(ms);
             }
@@ -221,10 +224,6 @@ namespace Shredder
                 var outStream = new MemoryStream();
 
                 out_image.Save(outStream, codec, p);
-
-                image.Dispose();
-                g.Dispose();
-
 
                 return outStream;
             }

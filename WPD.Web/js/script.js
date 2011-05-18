@@ -4,10 +4,42 @@
 var model = {
   currentImages: ko.observableArray([]),
   refreshEnabled: ko.observable('false'),
-  currentItem: ko.observable()
+  currentItem: ko.observable(),
+  templateQuery: ko.observable(''),
+  templates: ko.observableArray([])
 };
+
+ko.dependentObservable(function() {
+  var search = this.templateQuery();
+ 
+  $.ajax({
+    url: 't',
+    type: 'post',
+    data: this.templateQuery(),
+    dataType: 'json',
+    success: function(data) {
+      model.templates(data);
+    }
+  });
+}, model);
+
 model.setCurrent= function(data) {
       this.currentItem(data);
+};
+
+model.next = function() {
+    var idx = model.currentImages().indexOf(model.currentItem());
+    if (idx == model.currentImages().length - 1)
+        idx = 0;
+    model.setCurrent(model.currentImages()[idx + 1]);
+};
+
+model.back = function () {
+    var idx = model.currentImages().indexOf(model.currentItem());
+    if (idx == 0)
+        idx = model.currentImages().length;
+
+    model.setCurrent(model.currentImages()[idx - 1]);
 };
 
 model.toggleRefresh= function() {
@@ -37,7 +69,7 @@ model.refreshText= ko.dependentObservable(function() {
 ko.applyBindings(model);
 
 $(document).ready(function () {
-
+getNew();
 //  model.refreshEnabled= true;
 
   // $('#images').everyTime(1000, 'controlled', getNew);
@@ -56,6 +88,11 @@ function getNew() {
 
 }
 
+function formatDate(datetime) {
+    var dateObj = new Date(datetime);
+    var dateStr = (dateObj.getMonth()+1) + "/" + dateObj.getDate() + "/" + dateObj.getFullYear();
+    return dateStr; // will return mm/dd/yyyy
+}
 
 
 

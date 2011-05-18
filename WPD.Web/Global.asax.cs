@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Nina.Configuration;
 using Nina.Routing;
+using WPD.Web.Endpoints;
 
 namespace WPD.Web
 {
@@ -19,6 +20,7 @@ namespace WPD.Web
             RouteTable.Routes.RouteExistingFiles = true;
 
             RouteTable.Routes.Add(new MountingPoint<MongoImage>("mi"));
+            RouteTable.Routes.Add(new MountingPoint<Templates>("t"));
         
         }
 

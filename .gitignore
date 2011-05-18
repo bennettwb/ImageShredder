@@ -1,3 +1,9 @@
+*.suo
+*.sass-cache*
+*.app*
+*.vsp
+*.ctl
+*.docstates
 *[Oo]bj/
 *[Bb]in/
 *.suo

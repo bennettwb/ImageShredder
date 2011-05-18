@@ -68,7 +68,16 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-/* line 11, ../sass/screen.scss */
+/* line 10, ../sass/screen.scss */
+#mainArea {
+  text-align: center;
+}
+
+/* line 15, ../sass/screen.scss */
+#images ul {
+  text-align: center;
+}
+/* line 18, ../sass/screen.scss */
 #images ul li {
   display: inline-block;
   width: 200px;
@@ -78,25 +87,25 @@ footer, header, hgroup, menu, nav, section {
   vertical-align: middle;
   border: 1px solid #999999;
 }
-/* line 19, ../sass/screen.scss */
+/* line 26, ../sass/screen.scss */
 #images ul li img {
   margin: auto;
   display: inline-block;
   vertical-align: middle;
 }
 
-/* line 27, ../sass/screen.scss */
+/* line 34, ../sass/screen.scss */
 #enableRefresh {
   display: inline-block;
   width: 100%;
 }
 
-/* line 31, ../sass/screen.scss */
+/* line 38, ../sass/screen.scss */
 body #container {
   width: 100%;
 }
 
-/* line 34, ../sass/screen.scss */
+/* line 41, ../sass/screen.scss */
 #main {
   display: -moz-box;
   display: -webkit-box;
@@ -109,61 +118,59 @@ body #container {
   box-align: stretch;
   width: 100%;
 }
-/* line 39, ../sass/screen.scss */
-#main aside, #main #images {
+/* line 46, ../sass/screen.scss */
+#main aside, #main #mainArea {
   min-width: 100px;
 }
-/* line 42, ../sass/screen.scss */
-#main #images {
+/* line 49, ../sass/screen.scss */
+#main #mainArea {
   -moz-box-flex: 4;
   -webkit-box-flex: 4;
   box-flex: 4;
 }
-/* line 45, ../sass/screen.scss */
+/* line 52, ../sass/screen.scss */
 #main aside {
-  -moz-box-flex: 1;
-  -webkit-box-flex: 1;
-  box-flex: 1;
+  border: 1px solid #888888;
 }
 
-/* line 50, ../sass/screen.scss */
+/* line 57, ../sass/screen.scss */
 #enableRefresh {
   /* @include stretch; 
 */
 }
 
 @media screen and (min-width: 800px) {
-  /* line 55, ../sass/screen.scss */
+  /* line 62, ../sass/screen.scss */
   body.box-fluid {
   /*  #images { @include liquid(2); }
 */
   }
 }
 @media screen and (min-width: 1000px) {
-  /* line 61, ../sass/screen.scss */
+  /* line 68, ../sass/screen.scss */
   body.box-fluid {
-    /* #images { @include liquid(3); }
-*/
+    	/* #images { @include liquid(3); }
+    */
   }
 }
 @media screen and (min-width: 1200px) {
-  /* line 67, ../sass/screen.scss */
+  /* line 74, ../sass/screen.scss */
   body.box-fluid {
    /* #images { @include liquid(4); }
   */
   }
 }
-/* line 73, ../sass/screen.scss */
+/* line 80, ../sass/screen.scss */
 footer {
   min-height: 100px;
 }
 
-/* line 74, ../sass/screen.scss */
+/* line 81, ../sass/screen.scss */
 aside {
   min-height: 300px;
 }
 
-/* line 75, ../sass/screen.scss */
+/* line 82, ../sass/screen.scss */
 #nav {
   min-height: 300px;
 }

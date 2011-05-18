@@ -7,7 +7,7 @@ using System.Web;
 using MongoDB.Driver.Builders;
 using WPD.Shared;
 
-namespace WPD.Web
+namespace WPD.Web.Endpoints
 {
     public class MongoImage : Nina.Application
     {
@@ -24,10 +24,13 @@ namespace WPD.Web
                                 Select(x => new { Id = x.Id.ToString(), AssetPack = x });
 
                             return Json(images).ETagged();
-         
-                        }); 
 
-            Get("{id}.jpg", (m,c) =>
+                        });
+            Post("", (m, c) =>
+                         {
+                             return Nothing();
+                         });
+            Get("{id}.jpg", (m, c) =>
                                 {
                                     var db = Mongo.GetDatabase();
 
@@ -45,9 +48,12 @@ namespace WPD.Web
                                         Debug.WriteLine(ex.Message);
                                     }
                                     var buf = ms.GetBuffer();
-;
-                                    return File(buf, "image/jpg").ETagged();
+                                    ;
+                                    return File(buf, "image/jpeg").ETagged();
                                 });
+
         }
+
+
     }
 }

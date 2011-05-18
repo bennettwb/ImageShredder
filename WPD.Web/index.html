@@ -3,101 +3,105 @@
 <!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-
-  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-       Remove this if you use the .htaccess -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <title>Shredder POC</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-
-  <!-- CSS: implied media="all" -->
-  <link href="css/screen.css" media="screen, projection" rel="Stylesheet" type="text/css" />
-  <link href="css/print.css" media="print" rel="Stylesheet" type="text/css" />
-  <!--[if IE]>
-    <link href="css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
-  <![endif]-->
-
-  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
-  <script src="js/libs/modernizr-1.7.min.js"></script>
-
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+          Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Shredder POC</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- CSS: implied media="all" -->
+    <link href="css/screen.css" media="screen, projection" rel="Stylesheet" type="text/css" />
+    <link href="css/print.css" media="print" rel="Stylesheet" type="text/css" />
+    <!--[if IE]>
+          <link href="css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+          <![endif]-->
+    <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+    <script src="js/libs/modernizr-1.7.min.js"></script>
 </head>
-
 <body>
+    <div id="container">
+        <header>
+            WPD POC
+            </header>
+        <div id="main" role="main">
+            <aside id="control">
+              <section id="refresh">
+              <input type="button" id="enableRefresh" data-bind="click: toggleRefresh, value: refreshText" />
+              </section>  
+              <section id='assignmentSearch'>
+              <form>
+                <input data-bind='value: templateQuery, valueUpdate: "keyup"' />
+              </form>
+              <div id="results">
+              </div>
+              </section>
+              </aside>
+            <section id="mainArea"> 
+                <div id="imagePreview" data-bind='template: {name: "previewTemplate", data:currentItem}'>
+              </div>
+              <div id="images" data-bind='template: {name: "imageTemplate", data:currentImages}'></div>
+              </section>
+            <aside id="detail" data-bind='template: {name: "detailTemplate", data:currentItem}'>
+              </aside>
+            <script id='imageTemplate' type='text/html'>
+                <ul>
+                  {{each $data}}
+                  <li><img src="mi/${ Id }_200.jpg" alt="${ Id }" data-bind="click: function() { model.setCurrent( $value ) }" /></li>
+                  {{/each}}
+                </ul>
+            </script>
+            <script id='detailTemplate' type='text/html'>
+                <ul>
+                  <li><label>Original FileName:</label><span>${ AssetPack.OriginalFileName }</span></li>
+                  <li><label>Ingest Date:</label><span>{{= formatDate(AssetPack.IngestDate) }}</span></li>
+                  <li><label>Ingest Machine:</label><span>${ AssetPack.IngestMachine }</span></li>
+                  <li><label>Ingest Path:</label><span>${ AssetPack.IngestPath }</span></li>
+            </script>
+        </div>
+        <script id='previewTemplate' type='text/html'>
+              <span data-bind="click: model.back">back</span>  <span data-bind="click: model.next">next</span>
+              <div>
+                <img src="mi/${ Id }_600.jpg" alt="${ Id }" />
+              </div>
+           
+        </script>
+        <footer>
 
-  <div id="container">
-    <header>
-      WPD POC
-    </header>
-   
-    <div id="main" role="main">
-      <aside id="control">
-        <input type="button" id="enableRefresh" data-bind="click: toggleRefresh, value: refreshText" />
-      </aside>
-      <div id="images" data-bind='template: {name: "imageTemplate", data:currentImages}'></div>
-      <aside id="detail" data-bind='template: {name: "detailTemplate", data:currentItem}'>
-      
-      </aside>
-      <script id='imageTemplate' type='text/html'>
-        <ul>
-          {{each $data}}
-          <li><img src="mi/${ Id }_200.jpg" alt="${ id }" data-bind="click: function() { model.setCurrent( AssetPack ) }" /></li>
-          {{/each}}
-        </ul>
-      </script>
-      <script id='detailTemplate' type='text/html'>
-        <ul>
-          <li><label>Original FileName:</label><span>${ OriginalFileName }</span></li>
-          <li><label>Ingest Date:</label><span>${ IngestDate }</span></li>
-          <li><label>Ingest Machine:</label><span>${ IngestMachine }</span></li>
-          <li><label>Ingest Path:</label><span>${ IngestPath }</span></li>
-      </script>
+              </footer>
     </div>
-    <footer>
-
-    </footer>
-  </div> <!--! end of #container -->
-
-
-  <!-- JavaScript at the bottom for fast page loading -->
-
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.js"></script>
-  <script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.2.min.js'>\x3C/script>")</script>
-  <script src="js/libs/jquery.tmpl.js"></script>
-  <script src="js/libs/knockout-1.2.0.debug.js"></script>
-  <script src="js/mylibs/jquery.timers-1.2.js"></script>
-  <!-- scripts concatenated and minified via ant build script-->
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js?v=1"></script>
-  <!-- end scripts-->
-
-
-  <!--[if lt IE 7 ]>
-    <script src="js/libs/dd_belatedpng.js"></script>
-    <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
-  <![endif]-->
-
-
-  <!-- mathiasbynens.be/notes/async-analytics-snippet Change UA-XXXXX-X to be your site's ID -->
- <!-- <script>
-    var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
-    s.parentNode.insertBefore(g,s)}(document,"script"));
-  </script>
-  -->
+    <!--! end of #container -->
+    <!-- JavaScript at the bottom for fast page loading -->
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.js"></script>
+    <script>        window.jQuery || document.write("<script src='js/libs/jquery-1.5.2.min.js'>\x3C/script>")</script>
+    <script src="js/libs/jquery.tmpl.js"></script>
+    <script src="js/libs/knockout-1.2.0.debug.js"></script>
+    <script src="js/mylibs/jquery.timers-1.2.js"></script>
+    <!-- scripts concatenated and minified via ant build script-->
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js?v=1"></script>
+    <!-- end scripts-->
+    <!--[if lt IE 7 ]>
+              <script src="js/libs/dd_belatedpng.js"></script>
+              <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+              <![endif]-->
+    <!-- mathiasbynens.be/notes/async-analytics-snippet Change UA-XXXXX-X to be your site's ID -->
+    <!-- <script>
+                var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
+                (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+                g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+                s.parentNode.insertBefore(g,s)}(document,"script"));
+              </script>
+              -->
 </body>
 </html>

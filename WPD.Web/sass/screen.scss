@@ -7,20 +7,27 @@
 @import "compass";
 @import "compass/layout/stretching";
 
+#mainArea {
+	text-align: center;
+}
+
 #images {
+  ul {
+	text-align:center;
+  }
   ul li { 
-    display: inline-block; 
-    width: 200px; 
-    height: 200px; 
-    margin: 5px;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #999999;
-    img {
-      margin: auto;
-      display: inline-block;
-      vertical-align: middle;
-    }
+	display: inline-block; 
+	width: 200px; 
+	height: 200px; 
+	margin: 5px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #999999;
+	img {
+	  margin: auto;
+	  display: inline-block;
+	  vertical-align: middle;
+	}
   }
 }
 
@@ -36,14 +43,14 @@ body {
   @include box-orient(horizontal);
   @include box-align(stretch);
   width: 100%;
-  aside, #images {
-    min-width: 100px;
+  aside, #mainArea {
+	min-width: 100px;
   }
-  #images {
-    @include box-flex(4);
+  #mainArea {
+	@include box-flex(4);
   }
   aside {
-    @include box-flex(1);
+	border: 1px solid #888888;
   }
 }
 
@@ -59,7 +66,7 @@ body {
 
 @media screen and (min-width: 1000px) {
   body.box-fluid {
-    /* #images { @include liquid(3); }
+	/* #images { @include liquid(3); }
 */}
 }
 

@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GettyImages.Services.Event.Contract.Repository">
+      <HintPath>..\..\..\Dev\DEVELOPMENT\Services\Web\EventService\Repository\bin\GettyImages.Services.Event.Contract.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="GettyImages.Services.Sts.Repository">
+      <HintPath>..\..\..\Dev\DEVELOPMENT\CommonBin\GettyCore\GettyImages.Services.Sts.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MongoDB.Bson, Version=1.1.0.18656, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -106,10 +112,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Endpoints\Templates.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MongoImage.cs" />
+    <Compile Include="Endpoints\MongoImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

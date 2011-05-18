@@ -21,7 +21,7 @@ namespace WPD.Shared
 
         public static MongoServer CreateServer()
         {
-           return  MongoServer.Create("mongodb://localhost");
+           return  MongoServer.Create("mongodb://fresewsmedia01,fresewsmedia02");
           
         }
 
