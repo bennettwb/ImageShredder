@@ -83,10 +83,19 @@ function getNew() {
     dataType: 'json',
     success: function(data) {
       model.currentImages(data);
+      preload(data);
     }
   });
-
 }
+
+function preload(data) {
+  var images = new Array();
+  for(i = 0; i < data.length; i++)
+  {
+    images[i] = new Image();
+    images[i].src = 'mi/' + data[i].Id + '_600.jpg';
+  }
+};
 
 function formatDate(datetime) {
     var dateObj = new Date(datetime);
