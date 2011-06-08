@@ -7,6 +7,8 @@
 @import "compass";
 @import "compass/layout/stretching";
 
+body { font-family: helvetica, san-serif; }
+
 #mainArea {
 	text-align: center;
 }
@@ -51,9 +53,21 @@ body {
   }
   aside {
 	border: 1px solid #888888;
+  width: 15%;
   }
 }
+#detail {
+  padding: 2px;
+  label { 
+    display: block;
+    margin: 10px 0 1px 0;
+  }
+  span {
+    font-weight: bold; 
+  }
+  font-size: 10px;
 
+}
 #enableRefresh { 
   /* @include stretch; 
 */}

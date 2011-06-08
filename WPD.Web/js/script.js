@@ -6,7 +6,8 @@ var model = {
   refreshEnabled: ko.observable('false'),
   currentItem: ko.observable(),
   templateQuery: ko.observable(''),
-  templates: ko.observableArray([])
+  templates: ko.observableArray([]),
+  latest: ko.observable()
 };
 
 ko.dependentObservable(function() {
@@ -78,15 +79,22 @@ getNew();
 });
 
 function getNew() {
-  $.ajax({
-    url: 'mi',
-    dataType: 'json',
-    success: function(data) {
-      model.currentImages(data);
-      preload(data);
-    }
-  });
+    $.ajax({
+        url: 'mi?d=' + model.latest(),
+        dataType: 'json',
+        success: function (data) {
+            if (data.length != 0) {
+                model.latest(data[0].AssetPack.IngestDate);
+            }
+            for (var i = data.length - 1; i >= 0; i--) {
+                model.currentImages.unshift(data[i]);
+            }
+            preload(data);
+        }
+    });
 }
+
+//model.modelGetNew = getNew;
 
 function preload(data) {
   var images = new Array();
@@ -103,7 +111,16 @@ function formatDate(datetime) {
     return dateStr; // will return mm/dd/yyyy
 }
 
+$(document).ready(function () {
+  
+  $('body').keydown(function(event) {
+    if(String.fromCharCode(event.keyCode) == 'K')
+      model.next();
+    else if (String.fromCharCode(event.keyCode) == 'J')
+    model.back();
+  });
 
+});
 
 
 

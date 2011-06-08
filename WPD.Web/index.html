@@ -37,6 +37,8 @@
             <aside id="control">
               <section id="refresh">
               <input type="button" id="enableRefresh" data-bind="click: toggleRefresh, value: refreshText" />
+              
+              <input type="button" id="Button1" data-bind="click: getNew" value="get new" />
               </section>  
               <section id='assignmentSearch'>
               <form>
@@ -62,10 +64,20 @@
             </script>
             <script id='detailTemplate' type='text/html'>
                 <ul>
-                  <li><label>Original FileName:</label><span>${ AssetPack.OriginalFileName }</span></li>
-                  <li><label>Ingest Date:</label><span>{{= formatDate(AssetPack.IngestDate) }}</span></li>
-                  <li><label>Ingest Machine:</label><span>${ AssetPack.IngestMachine }</span></li>
-                  <li><label>Ingest Path:</label><span>${ AssetPack.IngestPath }</span></li>
+                  <li><label>Original FileName</label><span>${ AssetPack.OriginalFileName }</span></li>
+                  <li><label>Ingest Date</label><span>{{= formatDate(AssetPack.IngestDate) }}</span></li>
+                  <li><label>Ingest Machine</label><span>${ AssetPack.IngestMachine }</span></li>
+                  <li><label>Ingest Path</label><span>${ AssetPack.IngestPath }</span></li>
+                </ul>
+                <hr />
+                <ul>
+                  <li><label>Caption</label><span>${ AssetPack.ImageMetadata.Caption }</span></li>
+                  <li><label>Headline</label><span>${AssetPack.ImageMetadata.Headline }</span></li>
+                  <li><label>Byline</label><span>${AssetPack.ImageMetadata.BylineName }</span></li>
+                  <li><label>Byline Title</label><span>${AssetPack.ImageMetadata.BylineTitle }</span></li>
+                  <li><label>Source</label><span>${AssetPack.ImageMetadata.Source }</span></li>
+                  <li><label>Event Id</label><span>${AssetPack.ImageMetadata.Meid }</span></li>
+               </ul>
             </script>
         </div>
         <script id='previewTemplate' type='text/html'>

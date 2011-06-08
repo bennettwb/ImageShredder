@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using GettyImages.Editorial.App.Image;
 using MongoDB.Bson;
 using MongoDB.Driver.GridFS;
 using WPD.Shared;
@@ -71,10 +72,13 @@ namespace Shredder
                                       });
                 task.ContinueWith((after) =>
                                       {
-                                          var tr = Task.Factory.StartNew(ReadMetadata);
-                                        tr.ContinueWith(a=> Save());
-                                          tr.ContinueWith(a =>
-                                                          WriteGridFs(0, _original));
+                                         
+                                                          WriteGridFs(0, _original);
+                                      });
+
+                task.ContinueWith((after) =>
+                                      {
+                                          Task.Factory.StartNew<MetaData>(ReadMetadata).ContinueWith(a=> Save(a.Result));
                                       });
                 task.ContinueWith((after) =>
                                       {
@@ -97,25 +101,19 @@ namespace Shredder
                                                   }
                                                   /* WriteFile(after.Result, _fi, 200) */
                                               });
-
-
-                                          
-                                     
-                                       
-
-                                      }).ContinueWith((a) => Save());
+                                      });
             });
             
 
         }
 
-        private void Save()
+        private void Save(MetaData data)
         {
          
             var db = Mongo.GetDatabase();
 
             var coll = db.GetCollection("images");
-
+            _asset.ImageMetadata = data;
             coll.Insert(_asset);
 
   
@@ -151,19 +149,22 @@ namespace Shredder
 
             fs.Close();
         }
-        private void ReadMetadata()
+        private MetaData ReadMetadata()
         {
             try
             {
-   
-                var ms = new MemoryStream(_original, 0, _original.Length, false, true);
+                var buf = new byte[_original.Length];
+                _original.CopyTo(buf, 0);
+               
+                var ms = new MemoryStream(buf, 0, buf.Length);
 
-                _asset.ImageMetadata = new GettyImages.Editorial.App.Image.WICMetaDataHandler().GetMetaData(ms);
+              return new GettyImages.Editorial.App.Image.WICMetaDataHandler().GetMetaData(ms);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Exception reading metadata: {0}", ex.Message);
             }
+            return null;
         }
 
         private Task WriteFile(MemoryStream result, FileInfo fi, int size)
